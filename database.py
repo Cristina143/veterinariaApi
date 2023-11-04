@@ -1,9 +1,14 @@
 from peewee import * 
 #from data
 
+#DB = MySQLDatabase(
+#    'veterinaria',
+#    user='root', password='1234',host='localhost', port=3306
+#)
+
 DB = MySQLDatabase(
-    'veterinaria',
-    user='root', password='1234',host='localhost', port=3306
+    'railway',
+    user='root', password='-e3aEHfhbGHDB4HaGb1EC4HacDGDD6fd',host='viaduct.proxy.rlwy.net', port=54582
 )
 
 #modelos para representar una tabla
