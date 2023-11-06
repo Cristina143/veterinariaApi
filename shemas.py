@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 
-#Trabajador
+#Trabajadores
 class userBase(BaseModel):
     nombre: str
     telefono:str

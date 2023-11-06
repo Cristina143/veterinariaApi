@@ -130,8 +130,8 @@ async def update_worker(trabajador_nombre, trabajodor_request: userCreate):
     return await Worker.update_worker(trabajador_nombre, trabajodor_request)
 
 @app.post('/trabajador/{trabajador_correo}', tags=['trabajador'])
-async def update_worker(trabajador_correo, trabajodor_request: userUdatePass): # 
-    return await Worker.update_pass(trabajador_correo, trabajodor_request) #
+async def update_worker(trabajador_correo, trabajodor_request: userUdatePass): 
+    return await Worker.update_pass(trabajador_correo, trabajodor_request) 
 
 @app.get('/trabajadores', tags=['trabajador'])
 async def get_workers():
