@@ -140,6 +140,16 @@ async def update_worker(trabajador_nombre, trabajodor_request: userUdatePass):
     else:
         raise HTTPException(status_code=404, detail='Worker not found')
 
+async def update_pass(trabajador_correo, trabajodor_request: userUdatePass):
+    trabajador = Trabajador.select().where(Trabajador.correo == trabajador_correo).first()
+
+    if trabajador:
+        setattr(trabajador, 'contraseña', trabajodor_request.contraseña)
+        trabajador.save()
+        return True
+    else:
+        raise HTTPException(status_code=404, detail='Worker not found')
+
 
 
 

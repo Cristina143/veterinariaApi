@@ -15,7 +15,7 @@ class userFinal(userBase):
     id:int
     fechaContrato:str
     
-class userUdatePass(userBase):
+class userUdatePass(BaseModel):
     contraseña:str
 
 
