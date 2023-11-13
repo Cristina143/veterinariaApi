@@ -23,7 +23,7 @@ async def create_worker(trabajodor_request: userCreate):
         nombre = trabajodor_request.nombre,
         telefono= trabajodor_request.telefono,
         fechaContrato= date.today(),#trabajodor_request.fechaContrato,
-        contraseña= trabajodor_request.contraseña,
+        password= trabajodor_request.password,
         correo= trabajodor_request.correo,
         tipoUsuario= trabajodor_request.tipoUsuario
     )
@@ -38,7 +38,7 @@ async def get_worker(trabajador_nombre):
             nombre=trabajador.nombre,
             telefono=trabajador.telefono,
             fechaContrato=trabajador.fechaContrato.strftime('%Y-%m-%d'),  # Asigna la cadena de fecha
-            contraseña=trabajador.contraseña,
+            password=trabajador.password,
             correo=trabajador.correo,
             tipoUsuario=trabajador.tipoUsuario
         )
@@ -46,7 +46,7 @@ async def get_worker(trabajador_nombre):
         raise HTTPException(status_code=404, detail='Worker not found')
 
 async def get_login(trabajador_correo,trabajador_contra):
-    trabajador = Trabajador.select().where(Trabajador.correo == trabajador_correo and Trabajador.contraseña == trabajador_contra).first()
+    trabajador = Trabajador.select().where(Trabajador.correo == trabajador_correo and Trabajador.password == trabajador_contra).first()
 
     if trabajador:
         usuario = userFinal(
@@ -54,7 +54,7 @@ async def get_login(trabajador_correo,trabajador_contra):
             nombre=trabajador.nombre,
             telefono=trabajador.telefono,
             fechaContrato=trabajador.fechaContrato.strftime('%Y-%m-%d'),
-            contraseña=trabajador.contraseña,
+            password=trabajador.password,
             correo=trabajador.correo,
             tipoUsuario=trabajador.tipoUsuario
         )
@@ -78,7 +78,7 @@ async def login2(request_login):
 async def authenticate_user(email:str, password:str):
     trabajador= Trabajador.get_or_none(Trabajador.correo==email)
     
-    if trabajador is None or not trabajador.contraseña == password:
+    if trabajador is None or not trabajador.password == password:
         raise HTTPException(status_code=404, detail='Worker not found or incorrect password')
     
     access_token_expires = timedelta(hours=ACCESS_TOKEN_EXPIRE_MINUTES)
@@ -101,16 +101,16 @@ async def get_workers():
             nombre=index.nombre,
             telefono=index.telefono,
             fechaContrato=index.fechaContrato.strftime('%Y-%m-%d'),  # Asigna la cadena de fecha
-            #contraseña=index.contraseña,
+            #password=index.password,
             correo=index.correo,
             tipoUsuario=index.tipoUsuario
         )
-            #TrabajadorResponseModel(id=index.id ,nombre=index.nombre, telefono=index.telefono, fechaContrato=index.fechaContrato, contraseña=index.contraseña, correo=index.correo, tipoUsuario=index.tipoUsuario)
+            #TrabajadorResponseModel(id=index.id ,nombre=index.nombre, telefono=index.telefono, fechaContrato=index.fechaContrato, password=index.password, correo=index.correo, tipoUsuario=index.tipoUsuario)
             modelo = {'id': worker.id, 
                     'nombre': worker.nombre, 
                     'telefono': worker.telefono, 
                     'fechaContrato': worker.fechaContrato, 
-                    #'contraseña': worker.contraseña, 
+                    #'password': worker.password, 
                     'correo': worker.correo, 
                     'tipoUsuario': worker.tipoUsuario}
             resultados.append(modelo)
@@ -144,7 +144,7 @@ async def update_pass(trabajador_correo, trabajodor_request: userUdatePass):
     trabajador = Trabajador.select().where(Trabajador.correo == trabajador_correo).first()
 
     if trabajador:
-        setattr(trabajador, 'contraseña', trabajodor_request.contraseña)
+        setattr(trabajador, 'password', trabajodor_request.password)
         trabajador.save()
         return True
     else:

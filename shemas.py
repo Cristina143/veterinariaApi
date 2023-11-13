@@ -9,14 +9,14 @@ class userBase(BaseModel):
     tipoUsuario:str
 
 class userCreate(userBase):
-    contraseña:str
+    password:str
 
 class userFinal(userBase):
     id:int
     fechaContrato:str
     
 class userUdatePass(BaseModel):
-    contraseña:str
+    password:str
 
 
 #Modelo de la tabla trabajador para meter datos
@@ -24,7 +24,7 @@ class TrabajadorRequestModel(BaseModel):
     #nombre: str
     #telefono: str
     fechaContrato: str
-    contraseña: str
+    password: str
     #correo: EmailStr
     #tipoUsuario: str
 
@@ -116,7 +116,7 @@ class citaBaseEntrada(BaseModel):
     mascotaId: int
 
 #class citaCreate(userBase):
-#    contraseña:str
+#    password:str
 
 class citaFinal(citaBaseEntrada):
     id:int
@@ -145,7 +145,7 @@ class cajaCierra(BaseModel):
 
 
 #class citaCreate(userBase):
-#    contraseña:str
+#    password:str
 
 class cajaTotal(BaseModel):
     id:int

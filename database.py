@@ -18,7 +18,7 @@ class Trabajador(Model):
     nombre= CharField(max_length=80)
     telefono=CharField(max_length=45)
     fechaContrato= DateField() #DateTimeField(constraints=[SQL('DEFAULT CURRENT_TIMESTAMP')])  #CharField(max_length=45) 
-    contraseña=CharField(max_length=45)
+    password=CharField(max_length=45)
     correo=CharField(45)
     tipoUsuario=CharField(45)
 
