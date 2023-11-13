@@ -96,7 +96,7 @@ class Mascota(Model):
     comentario= CharField(max_length=200, null=True)
     estado= CharField(max_length=45)
     clienteid = ForeignKeyField(Cliente, field='id', backref='mascota', column_name='clienteid')
-    raza = ForeignKeyField(Raza, backref='raza_animal', column_name = 'raza', to_field='raza')
+    raza_nombre = ForeignKeyField(Raza, backref='raza_animal', column_name = 'raza_nombre', to_field='raza')
 
 #sobreescribir el archivo str
     def __str__(self):

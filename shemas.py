@@ -88,7 +88,7 @@ class MascotaRequestModel(BaseModel):
     comentario: str
     estado: str
     clienteid: int
-    razaid: int
+    raza_nombre: str
     
 #Modelo de la tabla especie para consultar datos
 class MascotaResponseModel(MascotaRequestModel):

@@ -12,7 +12,7 @@ async def create_pet(mascota_request: MascotaRequestModel):
         comentario= mascota_request.comentario,
         estado= mascota_request.estado,
         clienteid= mascota_request.clienteid,
-        razaid= mascota_request.razaid
+        raza_nombre= mascota_request.raza_nombre
     )
     return mascota_request
 
@@ -20,7 +20,7 @@ async def get_pet(mascota_mascota):
     mascota = Mascota.select().where(Mascota.nombre == mascota_mascota).first()
 
     if mascota:    
-        return MascotaResponseModel( id=mascota.id, nombre=mascota.nombre, genero=mascota.genero, comentario=mascota.comentario, estado=mascota.estado, clienteid=mascota.clienteid.id, razaid=mascota.razaid.id)
+        return MascotaResponseModel( id=mascota.id, nombre=mascota.nombre, genero=mascota.genero, comentario=mascota.comentario, estado=mascota.estado, clienteid=mascota.clienteid.id, raza_nombre=mascota.raza_nombre.raza)
     else:
         return HTTPException(404, 'Pet not found')
 
@@ -29,8 +29,8 @@ async def get_pets():
     if pet:
         resultados = []
         for index in pet:
-            pet = MascotaResponseModel( id=index.id, nombre=index.nombre, genero=index.genero, comentario=index.comentario, estado=index.estado, clienteid=index.clienteid.id, razaid=index.razaid.id)
-            modelo = {'id': pet.id, 'nombre': pet.nombre, 'genero': pet.genero, 'comentario': pet.comentario, 'estado': pet.estado, 'clienteid': pet.clienteid, 'razaid': pet.razaid}
+            pet = MascotaResponseModel( id=index.id, nombre=index.nombre, genero=index.genero, comentario=index.comentario, estado=index.estado, clienteid=index.clienteid.id, raza_nombre=index.raza_nombre.raza)
+            modelo = {'id': pet.id, 'nombre': pet.nombre, 'genero': pet.genero, 'comentario': pet.comentario, 'estado': pet.estado, 'clienteid': pet.clienteid, 'raza_nombre': pet.raza_nombre}
             resultados.append(modelo)
         json_result = json.dumps({'Mascotas': resultados})
         data = json.loads(json_result)

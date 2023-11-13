@@ -34,7 +34,17 @@ import functions.correo as Email
 
 import json
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 
 @app.on_event('startup')
@@ -246,18 +256,18 @@ async def create_pet(mascota_request: MascotaRequestModel):
     return await Pet.create_pet(mascota_request)
 
 #consultar un raza
-@app.get('/mascota/{mascota_id}', tags=['mascota'])
-async def get_pet(mascota_id):
-    return await Pet.get_pet(mascota_id)
+@app.get('/mascota/{mascota_nombre}', tags=['mascota'])
+async def get_pet(mascota_nombre):
+    return await Pet.get_pet(mascota_nombre)
 
 #borrar un raza
-@app.delete('/mascota/{mascota_id}', tags=['mascota'])
-async def delete_pet(mascota_id):
-    return await Pet.delete_pet(mascota_id)
+@app.delete('/mascota/{mascota_nombre}', tags=['mascota'])
+async def delete_pet(mascota_nombre):
+    return await Pet.delete_pet(mascota_nombre)
 
-@app.put('/mascota/{mascota_id}', tags=['mascota'])
-async def update_pet(mascota_id, mascota_request: MascotaRequestModel):
-    return await Pet.update_pet(mascota_id, mascota_request)
+@app.put('/mascota/{mascota_nombre}', tags=['mascota'])
+async def update_pet(mascota_nombre, mascota_request: MascotaRequestModel):
+    return await Pet.update_pet(mascota_nombre, mascota_request)
 
 @app.get('/mascotas', tags=['mascota'])
 async def get_pets():
