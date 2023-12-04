@@ -44,6 +44,22 @@ async def get_worker(trabajador_nombre):
         )
     else:
         raise HTTPException(status_code=404, detail='Worker not found')
+    
+async def get_workerID(trabajador_id):
+    trabajador = Trabajador.select().where(Trabajador.id == trabajador_id).first()
+
+    if trabajador:    
+        return userFinal(
+            id=trabajador.id,
+            nombre=trabajador.nombre,
+            telefono=trabajador.telefono,
+            fechaContrato=trabajador.fechaContrato.strftime('%Y-%m-%d'),  # Asigna la cadena de fecha
+            password=trabajador.password,
+            correo=trabajador.correo,
+            tipoUsuario=trabajador.tipoUsuario
+        )
+    else:
+        raise HTTPException(status_code=404, detail='Worker not found')
 
 async def get_login(trabajador_correo,trabajador_contra):
     trabajador = Trabajador.select().where(Trabajador.correo == trabajador_correo and Trabajador.password == trabajador_contra).first()
@@ -87,6 +103,7 @@ async def authenticate_user(email:str, password:str):
         "exp": datetime.utcnow() + access_token_expires,
     }
     access_token = jwt.encode(access_token_data, SECRET_KEY, algorithm=ALGORITHM)
+    
 
     return access_token
 

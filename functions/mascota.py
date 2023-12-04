@@ -23,6 +23,14 @@ async def get_pet(mascota_mascota):
         return MascotaResponseModel( id=mascota.id, nombre=mascota.nombre, genero=mascota.genero, comentario=mascota.comentario, estado=mascota.estado, clienteid=mascota.clienteid.id, raza_nombre=mascota.raza_nombre.raza)
     else:
         return HTTPException(404, 'Pet not found')
+    
+async def get_petId(mascota_id):
+    mascota = Mascota.select().where(Mascota.id == mascota_id).first()
+
+    if mascota:    
+        return MascotaResponseModel( id=mascota.id, nombre=mascota.nombre, genero=mascota.genero, comentario=mascota.comentario, estado=mascota.estado, clienteid=mascota.clienteid.id, raza_nombre=mascota.raza_nombre.raza)
+    else:
+        return HTTPException(404, 'Pet not found')
 
 async def get_pets():
     pet = Mascota.select()

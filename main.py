@@ -114,6 +114,11 @@ async def get_worker(trabajador_nombre):
     return await Worker.get_worker(trabajador_nombre)
     #return Trabajador.select().where(Trabajador.id == trabajador_id).first()
 
+#consultar un trabajador
+@app.get('/trabajadorId/{trabajador_id}', tags=['trabajador'])
+async def get_worker(trabajador_id):
+    return await Worker.get_workerID(trabajador_id)
+    #return Trabajador.select().where(Trabajador.id == trabajador_id).first()
 
 @app.get('/logIn', tags=['trabajador'])
 async def get_login(trabajador_correo:str,trabajador_contra:str ):
@@ -259,6 +264,11 @@ async def create_pet(mascota_request: MascotaRequestModel):
 @app.get('/mascota/{mascota_nombre}', tags=['mascota'])
 async def get_pet(mascota_nombre):
     return await Pet.get_pet(mascota_nombre)
+
+#consultar un raza
+@app.get('/mascotaId/{mascota_id}', tags=['mascota'])
+async def get_pet(mascota_id):
+    return await Pet.get_pet(mascota_id)
 
 #borrar un raza
 @app.delete('/mascota/{mascota_nombre}', tags=['mascota'])
