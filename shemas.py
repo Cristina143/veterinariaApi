@@ -92,7 +92,8 @@ class MascotaRequestModel(BaseModel):
     
 #Modelo de la tabla especie para consultar datos
 class MascotaResponseModel(MascotaRequestModel):
-    id: int 
+    id: int
+    clientenombre: str
 
 #detalleventa
 #Modelo de la tabla raza para meter datos

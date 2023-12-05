@@ -268,7 +268,7 @@ async def get_pet(mascota_nombre):
 #consultar un raza
 @app.get('/mascotaId/{mascota_id}', tags=['mascota'])
 async def get_pet(mascota_id):
-    return await Pet.get_pet(mascota_id)
+    return await Pet.get_petId(mascota_id)
 
 #borrar un raza
 @app.delete('/mascota/{mascota_nombre}', tags=['mascota'])
