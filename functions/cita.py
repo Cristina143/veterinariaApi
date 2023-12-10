@@ -74,7 +74,19 @@ async def get_detalleVenta(dellate_id):
     detalle = DetalleVenta.select().where(DetalleVenta.id == dellate_id).first()
 
     if detalle:    
-        return DetalleVentaResponseModel( id=detalle.id ,precioservicio=detalle.precioservicio, serviciosid=detalle.serviciosid.id)
+        return DetalleVentaResponseModel( id=detalle.id ,precioservicio=detalle.precioservicio, serviciosid=detalle.serviciosid.id,citaid=detalle.citaid.id)
+    else:
+        return HTTPException(404, 'Detalle Venta not found')
+
+async def get_detalleVenta_IdCita(cita_id):
+    detalle = DetalleVenta.select().where(DetalleVenta.citaid == cita_id)
+
+    if detalle:
+        resultados = []
+        for index in detalle:
+            modelo ={'id': index.id, 'precioservicio': index.precioservicio, 'serviciosid': index.serviciosid.id, 'citaid': index.citaid.id}
+            resultados.append(modelo)    
+        return resultados
     else:
         return HTTPException(404, 'Detalle Venta not found')
 
@@ -94,8 +106,8 @@ async def get_detalleVentas():
     if detalle:
         resultados = []
         for index in detalle:
-            detail = DetalleVentaResponseModel(id=index.id ,precioservicio=index.precioservicio, serviciosid=index.serviciosid.id)
-            modelo = {'id': detail.id, 'precioservicio': detail.precioservicio, 'servicioid': detail.serviciosid}
+            detail = DetalleVentaResponseModel(id=index.id ,precioservicio=index.precioservicio, serviciosid=index.serviciosid.id,citaid=index.citaid.id)
+            modelo = {'id': detail.id, 'precioservicio': detail.precioservicio, 'servicioid': detail.serviciosid, 'citaid': detail.citaid}
             resultados.append(modelo)
         json_result = json.dumps({'DetalleVenta': resultados})
         data = json.loads(json_result)
@@ -240,8 +252,6 @@ async def get_citaactivas():
             return HTTPException(404, 'Cita not found')
 
 async def get_citadia(cita_dia):
-#        print(cita_dia)
-#        return cita_dia
     cita = Cita.select().where(Cita.fecha == cita_dia)
     if not cita:
         return HTTPException(404, 'Cita not found')
@@ -261,8 +271,6 @@ async def get_citadia(cita_dia):
                             'servicioNombre': index.servicioid.nombre, 'mascotaId': index.mascotaid.id, 
                             'mascotaNombre': index.mascotaid.nombre, 'total': index.total, 'fechaPago': index.FechaPago }
             resultados.append(modelo)
-        #json_result = json.dumps({'Cita': resultados})
-        #data = json.loads(json_result)
         return resultados
     else:
         return HTTPException(404, 'Cita not found')

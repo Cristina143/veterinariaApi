@@ -301,6 +301,10 @@ async def update_detalle(detalle_id, detalle_request: DetalleVentaRequestModel):
 async def get_detalles():
     return await Date.get_detalleVentas()
 
+@app.get('/detalleventaCitas/{cita_id}', tags=['detalleventa'])
+async def get_detalleCita(cita_id):
+    return await Date.get_detalleVenta_IdCita(cita_id)
+
 #cita
 @app.post('/cita', tags=['cita'])
 async def create_cita(cita_request: citaBaseEntrada):
