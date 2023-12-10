@@ -275,4 +275,27 @@ async def get_citadia(cita_dia):
     else:
         return HTTPException(404, 'Cita not found')
 
+async def get_citas():
+    cita = Cita.select()
+    if not cita:
+        return HTTPException(404, 'Cita not found')
+    if cita:
+        resultados = []
+        for index in cita:            
+            if index.total == None:
+                modelo = {'id': index.id, 'fechaActual': index.fechaActual, 'fecha': index.fecha, 'hora': index.hora, 
+                            'comentario': index.comentario, 'estado': index.estado, 'trabajadorId': index.trabajadorId.id, 
+                            'trabajadorNombre': index.trabajadorId.nombre, 'servicioId': index.servicioid.id, 
+                            'servicioNombre': index.servicioid.nombre, 'mascotaId': index.mascotaid.id, 
+                            'mascotaNombre': index.mascotaid.nombre, 'total': index.total, 'fechaPago': index.FechaPago } 
+            else:
+                modelo = {'id': index.id, 'fechaActual': index.fechaActual, 'fecha': index.fecha, 'hora': index.hora, 
+                            'comentario': index.comentario, 'estado': index.estado, 'trabajadorId': index.trabajadorId.id, 
+                            'trabajadorNombre': index.trabajadorId.nombre, 'servicioId': index.servicioid.id, 
+                            'servicioNombre': index.servicioid.nombre, 'mascotaId': index.mascotaid.id, 
+                            'mascotaNombre': index.mascotaid.nombre, 'total': index.total, 'fechaPago': index.FechaPago }
+            resultados.append(modelo)
+        return resultados
+    else:
+        return HTTPException(404, 'Cita not found')
 

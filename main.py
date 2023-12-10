@@ -331,6 +331,10 @@ async def get_citaactivas():
 async def get_citadia(cita_dia):
     return await Date.get_citadia(cita_dia)
 
+@app.get('/citas', tags=['cita'])
+async def get_citas():
+    return await Date.get_citas()
+
 @app.post('/cita/{cita_id}', tags=['cita'])
 async def create_pago(cita_id, pago_request: citaPay):
     return await Date.create_pago(cita_id, pago_request)
