@@ -100,6 +100,7 @@ async def authenticate_user(email:str, password:str):
     access_token_expires = timedelta(hours=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token_data = {
         "sub": trabajador.correo,
+        "rol": trabajador.tipoUsuario,
         "exp": datetime.utcnow() + access_token_expires,
     }
     access_token = jwt.encode(access_token_data, SECRET_KEY, algorithm=ALGORITHM)
