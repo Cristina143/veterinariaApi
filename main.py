@@ -369,7 +369,7 @@ async def Compara(codigo):
 #env\Scripts\activate.bat   *
 #pip install fastapi
 #pip install uvicorn
-#uvicorn main:app --reload          *
+#uvicorn main:app --reload           *
 #Thunder Client
 
 #pip install bcrypt

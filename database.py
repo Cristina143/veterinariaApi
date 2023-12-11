@@ -1,15 +1,15 @@
 from peewee import * 
 #from data
 
-DB = MySQLDatabase(
-    'veterinaria',
-    user='root', password='1234',host='localhost', port=3306
-)
-
 #DB = MySQLDatabase(
-#    'railway',
-#    user='root', password='-e3aEHfhbGHDB4HaGb1EC4HacDGDD6fd',host='viaduct.proxy.rlwy.net', port=54582
+#    'veterinaria',
+#    user='root', password='1234',host='localhost', port=3306
 #)
+
+DB = MySQLDatabase(
+    'bijvvabu08kdtvu6jmrh',
+    user='uysu7x5mzm3etwer', password='2CMtDvpuiVUuVwhXCOii',host='bijvvabu08kdtvu6jmrh-mysql.services.clever-cloud.com', port=3306
+)
 
 #modelos para representar una tabla
 #trabajador
