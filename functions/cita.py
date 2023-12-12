@@ -37,13 +37,13 @@ async def get_historial(id_mascota):
 #pagar
 async def create_pago(cita_id, pago_request: citaPay):
     #detalle = create_detalleVenta(detalle_request)
-    detalle = DetalleVenta.select().where(DetalleVenta.citaid == cita_id)
 #    detalle = DetalleVenta.get(DetalleVenta.citaid == cita_id)
     
-    suma = 0.0
-    #resultados = []
-    for index in detalle:
-        suma = suma + float(index.precioservicio)
+#    detalle = DetalleVenta.select().where(DetalleVenta.citaid == cita_id)
+#    suma = 0.0
+    
+#    for index in detalle:
+#        suma = suma + float(index.precioservicio)
 
     cita = Cita.get(Cita.id == cita_id)
 
@@ -51,7 +51,7 @@ async def create_pago(cita_id, pago_request: citaPay):
         #for index, item in pago_request:
         cita.estado = 'realizado'
         setattr(cita, 'estado', 'realizado')
-        setattr(cita, 'total', suma)
+        setattr(cita, 'total', pago_request.total)
         setattr(cita, 'FechaPago', pago_request.fechaPago)
         cita.save()
         return True

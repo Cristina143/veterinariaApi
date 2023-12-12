@@ -124,7 +124,7 @@ class citaFinal(citaBaseEntrada):
     fechaActual:str
     
 class citaPay(BaseModel):
-#    total: Optional[float] 
+    total: Optional[float] 
     fechaPago: Optional[str]  
 #    detalleVentaId: Optional[int] 
 
