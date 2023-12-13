@@ -25,8 +25,7 @@ async def get_historial(id_mascota):
                             'estado': index.estado, 
                             'trabajadorId': index.trabajadorId.id, 
                             'trabajadorNombre': index.trabajadorId.nombre, 
-                            'servicioId': index.servicioid.id, 
-                            'servicioNombre': index.servicioid.nombre, 'mascotaId': index.mascotaid.id,
+                            'mascotaId': index.mascotaid.id,
                             'mascotaNombre': index.mascotaid.nombre, 'total': index.total, 
                             'fechaPago': index.FechaPago } #'detalleVentaId': None, 'detalleVentaPrecio': None,
                 resultados.append(modelo)
@@ -132,7 +131,7 @@ async def create_cita(cita_request: citaBaseEntrada):
         comentario = cita_request.comentario,
         estado = cita_request.estado,
         trabajadorId = cita_request.trabajadorId,
-        servicioid = cita_request.servicioId,
+#        servicioid = cita_request.servicioId,
         mascotaid = cita_request.mascotaId
     )
     return w.execute()
@@ -152,9 +151,9 @@ async def get_citaid(cita_id):
         cita = Cita.get(Cita.id == cita_id)
         #modelo = []
         if cita.total == None:
-            modelo = {'id': cita.id, 'fechaActual': cita.fechaActual, 'fecha': cita.fecha, 'hora': cita.hora, 'comentario': cita.comentario, 'estado': cita.estado, 'trabajadorId': cita.trabajadorId.id, 'trabajadorNombre': cita.trabajadorId.nombre, 'servicioId': cita.servicioid.id, 'servicioNombre': cita.servicioid.nombre, 'mascotaId': cita.mascotaid.id, 'mascotaNombre': cita.mascotaid.nombre, 'total': cita.total, 'fechaPago': cita.FechaPago } #'detalleVentaId': None, 'detalleVentaPrecio': None,
+            modelo = {'id': cita.id, 'fechaActual': cita.fechaActual, 'fecha': cita.fecha, 'hora': cita.hora, 'comentario': cita.comentario, 'estado': cita.estado, 'trabajadorId': cita.trabajadorId.id, 'trabajadorNombre': cita.trabajadorId.nombre, 'mascotaId': cita.mascotaid.id, 'mascotaNombre': cita.mascotaid.nombre, 'total': cita.total, 'fechaPago': cita.FechaPago } #'detalleVentaId': None, 'detalleVentaPrecio': None,
         else:
-            modelo = {'id': cita.id, 'fechaActual': cita.fechaActual, 'fecha': cita.fecha, 'hora': cita.hora, 'comentario': cita.comentario, 'estado': cita.estado, 'trabajadorId': cita.trabajadorId.id, 'trabajadorNombre': cita.trabajadorId.nombre, 'servicioId': cita.servicioid.id, 'servicioNombre': cita.servicioid.nombre, 'mascotaId': cita.mascotaid.id, 'mascotaNombre': cita.mascotaid.nombre, 'total': cita.total, 'fechaPago': cita.FechaPago } #'detalleVentaId': cita.detalleventaid.id, 'detalleVentaPrecio': cita.detalleventaid.precioservicio,
+            modelo = {'id': cita.id, 'fechaActual': cita.fechaActual, 'fecha': cita.fecha, 'hora': cita.hora, 'comentario': cita.comentario, 'estado': cita.estado, 'trabajadorId': cita.trabajadorId.id, 'trabajadorNombre': cita.trabajadorId.nombre, 'mascotaId': cita.mascotaid.id, 'mascotaNombre': cita.mascotaid.nombre, 'total': cita.total, 'fechaPago': cita.FechaPago } #'detalleVentaId': cita.detalleventaid.id, 'detalleVentaPrecio': cita.detalleventaid.precioservicio,
     #citaPay(id=cita.id, fechaActual=cita.fechaActual, fecha=cita.fecha, hora=cita.hora, comentario=cita.comentario, estado=cita.estado, trabajadorId=cita.trabajadorId.id, servicioId=cita.servicioid.id, mascotaId=cita.mascotaid.id, total=cita.total, fechaPago=cita.FechaPago)
         return modelo
 
@@ -200,16 +199,14 @@ async def get_citadoctor(cita_doctor):
                                 'comentario': index.comentario, 'estado': index.estado, 
                                 'trabajadorId': index.trabajadorId.id, 
                                 'trabajadorNombre': index.trabajadorId.nombre, 
-                                'servicioId': index.servicioid.id, 
-                                'servicioNombre': index.servicioid.nombre, 'mascotaId': index.mascotaid.id,
+                                'mascotaId': index.mascotaid.id,
                                 'mascotaNombre': index.mascotaid.nombre, 'total': index.total, 
                                 'fechaPago': index.FechaPago } #'detalleVentaId': None, 'detalleVentaPrecio': None,
                 else:
                     modelo = {'id': index.id, 'fechaActual': index.fechaActual, 'fecha': index.fecha, 
                                 'hora': index.hora, 'comentario': index.comentario, 'estado': index.estado, 
                                 'trabajadorId': index.trabajadorId.id, 
-                                'trabajadorNombre': index.trabajadorId.nombre, 'servicioId': index.servicioid.id, 
-                                'servicioNombre': index.servicioid.nombre, 'mascotaId': index.mascotaid.id, 
+                                'trabajadorNombre': index.trabajadorId.nombre, 'mascotaId': index.mascotaid.id, 
                                 'mascotaNombre': index.mascotaid.nombre, 'total': index.total, 
                                 'fechaPago': index.FechaPago } #'detalleVentaId': cita.detalleventaid.id, 'detalleVentaPrecio': cita.detalleventaid.precioservicio,
                 resultados.append(modelo)
@@ -235,14 +232,12 @@ async def get_citaactivas():
                 if index.total == None:
                     modelo = {'id': index.id, 'fechaActual': index.fechaActual, 'fecha': index.fecha, 'hora': index.hora, 
                                 'comentario': index.comentario, 'estado': index.estado, 'trabajadorId': index.trabajadorId.id, 
-                                'trabajadorNombre': index.trabajadorId.nombre, 'servicioId': index.servicioid.id, 
-                                'servicioNombre': index.servicioid.nombre, 'mascotaId': index.mascotaid.id, 
+                                'trabajadorNombre': index.trabajadorId.nombre, 'mascotaId': index.mascotaid.id, 
                                 'mascotaNombre': index.mascotaid.nombre, 'total': index.total, 'fechaPago': index.FechaPago } #'detalleVentaId': None, 'detalleVentaPrecio': None,
                 else:
                     modelo = {'id': index.id, 'fechaActual': index.fechaActual, 'fecha': index.fecha, 'hora': index.hora, 
                                 'comentario': index.comentario, 'estado': index.estado, 'trabajadorId': index.trabajadorId.id, 
-                                'trabajadorNombre': index.trabajadorId.nombre, 'servicioId': index.servicioid.id, 
-                                'servicioNombre': index.servicioid.nombre, 'mascotaId': index.mascotaid.id, 
+                                'trabajadorNombre': index.trabajadorId.nombre, 'mascotaId': index.mascotaid.id, 
                                 'mascotaNombre': index.mascotaid.nombre, 'total': index.total, 'fechaPago': index.FechaPago } #'detalleVentaId': cita.detalleventaid.id, 'detalleVentaPrecio': cita.detalleventaid.precioservicio,
                 resultados.append(modelo)
             #json_result = json.dumps({'Cita': resultados})
@@ -261,14 +256,12 @@ async def get_citadia(cita_dia):
             if index.total == None:
                 modelo = {'id': index.id, 'fechaActual': index.fechaActual, 'fecha': index.fecha, 'hora': index.hora, 
                             'comentario': index.comentario, 'estado': index.estado, 'trabajadorId': index.trabajadorId.id, 
-                            'trabajadorNombre': index.trabajadorId.nombre, 'servicioId': index.servicioid.id, 
-                            'servicioNombre': index.servicioid.nombre, 'mascotaId': index.mascotaid.id, 
+                            'trabajadorNombre': index.trabajadorId.nombre, 'mascotaId': index.mascotaid.id, 
                             'mascotaNombre': index.mascotaid.nombre, 'total': index.total, 'fechaPago': index.FechaPago } 
             else:
                 modelo = {'id': index.id, 'fechaActual': index.fechaActual, 'fecha': index.fecha, 'hora': index.hora, 
                             'comentario': index.comentario, 'estado': index.estado, 'trabajadorId': index.trabajadorId.id, 
-                            'trabajadorNombre': index.trabajadorId.nombre, 'servicioId': index.servicioid.id, 
-                            'servicioNombre': index.servicioid.nombre, 'mascotaId': index.mascotaid.id, 
+                            'trabajadorNombre': index.trabajadorId.nombre, 'mascotaId': index.mascotaid.id, 
                             'mascotaNombre': index.mascotaid.nombre, 'total': index.total, 'fechaPago': index.FechaPago }
             resultados.append(modelo)
         return resultados
@@ -285,14 +278,12 @@ async def get_citas():
             if index.total == None:
                 modelo = {'id': index.id, 'fechaActual': index.fechaActual, 'fecha': index.fecha, 'hora': index.hora, 
                             'comentario': index.comentario, 'estado': index.estado, 'trabajadorId': index.trabajadorId.id, 
-                            'trabajadorNombre': index.trabajadorId.nombre, 'servicioId': index.servicioid.id, 
-                            'servicioNombre': index.servicioid.nombre, 'mascotaId': index.mascotaid.id, 
+                            'trabajadorNombre': index.trabajadorId.nombre, 'mascotaId': index.mascotaid.id, 
                             'mascotaNombre': index.mascotaid.nombre, 'total': index.total, 'fechaPago': index.FechaPago } 
             else:
                 modelo = {'id': index.id, 'fechaActual': index.fechaActual, 'fecha': index.fecha, 'hora': index.hora, 
                             'comentario': index.comentario, 'estado': index.estado, 'trabajadorId': index.trabajadorId.id, 
-                            'trabajadorNombre': index.trabajadorId.nombre, 'servicioId': index.servicioid.id, 
-                            'servicioNombre': index.servicioid.nombre, 'mascotaId': index.mascotaid.id, 
+                            'trabajadorNombre': index.trabajadorId.nombre, 'mascotaId': index.mascotaid.id, 
                             'mascotaNombre': index.mascotaid.nombre, 'total': index.total, 'fechaPago': index.FechaPago }
             resultados.append(modelo)
         return resultados

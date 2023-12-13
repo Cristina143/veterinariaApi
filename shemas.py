@@ -113,7 +113,7 @@ class citaBaseEntrada(BaseModel):
     comentario: str
     estado:str
     trabajadorId: int
-    servicioId: int
+#    servicioId: int
     mascotaId: int
 
 #class citaCreate(userBase):

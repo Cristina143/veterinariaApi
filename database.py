@@ -1,15 +1,15 @@
 from peewee import * 
 #from data
 
-#DB = MySQLDatabase(
-#    'veterinaria',
-#    user='root', password='1234',host='localhost', port=3306
-#)
-
 DB = MySQLDatabase(
-    'bijvvabu08kdtvu6jmrh',
-    user='uysu7x5mzm3etwer', password='2CMtDvpuiVUuVwhXCOii',host='bijvvabu08kdtvu6jmrh-mysql.services.clever-cloud.com', port=3306
+    'veterinaria',
+    user='root', password='1234',host='localhost', port=3306
 )
+
+#DB = MySQLDatabase(
+#    'bijvvabu08kdtvu6jmrh',
+#    user='uysu7x5mzm3etwer', password='2CMtDvpuiVUuVwhXCOii',host='bijvvabu08kdtvu6jmrh-mysql.services.clever-cloud.com', port=3306
+#)
 
 #modelos para representar una tabla
 #trabajador
@@ -117,7 +117,7 @@ class Cita(Model):
     comentario= CharField(max_length=200, null=True)
     estado= CharField(max_length=45)
     trabajadorId = ForeignKeyField(Trabajador, field="id", column_name='trabajadorId')
-    servicioid = ForeignKeyField(model=Servicio, field='id', column_name='serviciosid')
+#    servicioid = ForeignKeyField(model=Servicio, field='id', column_name='serviciosid')
     mascotaid = ForeignKeyField(model=Mascota, field='id', column_name='mascotasid')
     total = FloatField(null=True)
     FechaPago=CharField(max_length=45,null=True)

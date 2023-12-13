@@ -60,7 +60,7 @@ async def SendEmail(correo):
         p2 = ''.join(random.choice(char) for i in range(3))
         p3 = ''.join(random.choice(char) for i in range(3))
         #code = p1+'-'+p2+'-'+p3
-        code = "http://localhost:4200/enter-password"
+        code = "http://localhost:4200/enter-password;correo=" + correo
         Myfile = open('functions/html/mensaje.html', "r", encoding="utf-8")
         readFile = Myfile.read()
         readFile = readFile.replace("CODE", code)
