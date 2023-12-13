@@ -117,7 +117,7 @@ class Cita(Model):
     comentario= CharField(max_length=200, null=True)
     estado= CharField(max_length=45)
     trabajadorId = ForeignKeyField(Trabajador, field="id", column_name='trabajadorId')
-#    servicioid = ForeignKeyField(model=Servicio, field='id', column_name='serviciosid')
+    servicioid = ForeignKeyField(model=Servicio, field='id', column_name='serviciosid')
     mascotaid = ForeignKeyField(model=Mascota, field='id', column_name='mascotasid')
     total = FloatField(null=True)
     FechaPago=CharField(max_length=45,null=True)
