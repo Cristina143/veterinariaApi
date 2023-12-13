@@ -343,6 +343,10 @@ async def create_pago(cita_id, pago_request: citaPay):
 async def get_historial(nombre_mascota):
     return await Date.get_historial(nombre_mascota)
 
+@app.get('/historial', tags=['cita'])
+async def get_historial():
+    return await Date.get_all_historial()
+
 #caja
 @app.post('/caja', tags=['caja'])
 async def abrir_caja(caja_request: cajaAbre):

@@ -33,6 +33,29 @@ async def get_historial(id_mascota):
             return resultados
         else:
             return HTTPException(404, 'Cita not found')
+        
+async def get_all_historial():
+    
+        #mascota = Mascota.select().where(Mascota.id == id_mascota).first()
+
+        cita = Cita.select()
+        if cita:
+            resultados = []
+            for index in cita:
+                
+                modelo = {'id': index.id, 'fechaActual': index.fechaActual,
+                            'fecha': index.fecha, #'hora': index.hora, 'comentario': index.comentario,
+                            'estado': index.estado, 
+                            'trabajadorId': index.trabajadorId.id, 
+                            'trabajadorNombre': index.trabajadorId.nombre,
+                            'servicioId':index.servicioid.id, 'servicioNombre':index.servicioid.nombre, 
+                            'mascotaId': index.mascotaid.id,
+                            'mascotaNombre': index.mascotaid.nombre, 'total': index.total, 
+                            'fechaPago': index.FechaPago } #'detalleVentaId': None, 'detalleVentaPrecio': None,
+                resultados.append(modelo)
+            return resultados
+        else:
+            return HTTPException(404, 'Cita not found')
 
 #pagar
 async def create_pago(cita_id, pago_request: citaPay):
